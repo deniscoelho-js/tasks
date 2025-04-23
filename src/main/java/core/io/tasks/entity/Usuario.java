@@ -1,5 +1,6 @@
 package core.io.tasks.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class Usuario {
     private String senha;
     private OffsetDateTime dataDeRegistro;
 
+    @JsonIgnoreProperties("tasks")
     @OneToMany(mappedBy = "usuario")
     private List<Task> tasks = new ArrayList<>();
 

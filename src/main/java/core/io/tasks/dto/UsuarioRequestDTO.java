@@ -21,6 +21,4 @@ public class UsuarioRequestDTO {
     private String email;
     private String senha;
     private OffsetDateTime dataDeRegistro;
-
-
 }

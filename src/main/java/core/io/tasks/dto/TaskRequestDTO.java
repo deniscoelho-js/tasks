@@ -23,6 +23,5 @@ public class TaskRequestDTO {
     private Prioridade prioridade;
     private Categoria categoria;
     private OffsetDateTime dataCriacao;
-//    private Integer usuarioId;
-    
+    private Usuario usuario;
 }

@@ -1,6 +1,7 @@
 package core.io.tasks.entity;
 
 import ch.qos.logback.core.net.server.Client;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import core.io.tasks.enums.Categoria;
 import core.io.tasks.enums.Prioridade;
 import core.io.tasks.enums.Status;
@@ -21,6 +22,7 @@ import java.time.OffsetDateTime;
 @Entity
 public class Task {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -35,7 +37,8 @@ public class Task {
     private OffsetDateTime dataCriacao;
     private OffsetDateTime dataDeConclusao;
 
-    @ManyToOne
+    @JsonIgnoreProperties("usuarios")
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 }

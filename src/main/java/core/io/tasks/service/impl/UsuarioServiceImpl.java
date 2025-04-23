@@ -6,6 +6,7 @@ import core.io.tasks.repository.TaskRepository;
 import core.io.tasks.repository.UsuarioRepository;
 import core.io.tasks.service.UsuarioService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
 
+    @Transactional
     public Usuario salvarUsuario(Usuario usuario) {
         try {
             return usuarioRepository.save(usuario);
@@ -32,24 +34,27 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
     }
 
-
+    @Transactional
     public Usuario listarUsuarioPorId(Integer id) {
         return usuarioRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException(String.format("Usuário id = %s não encontrado.", id))
         );
     }
 
+    @Transactional
     @Override
     public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
     }
 
+    @Transactional
     @Override
     public void deletarUsuario(Integer id) {
         Usuario user = listarUsuarioPorId(id);
         usuarioRepository.delete(user);
     }
 
+    @Transactional
     @Override
     public Usuario editarUsuario(Integer id, Map<String, Object> updates) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(
