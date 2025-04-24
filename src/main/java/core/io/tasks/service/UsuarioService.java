@@ -1,6 +1,5 @@
 package core.io.tasks.service;
 
-import core.io.tasks.dto.UsuarioRequestDTO;
 import core.io.tasks.entity.Usuario;
 
 
@@ -12,6 +11,6 @@ public interface UsuarioService {
     public List<Usuario> listarUsuarios();
     public void deletarUsuario(Integer id);
     public Usuario editarUsuario(Integer id, Map<String, Object> updates);
-    public Usuario listarUsuarioPorId(Integer id);
+    public Usuario buscarUsuarioPorId(Integer id);
 
 }

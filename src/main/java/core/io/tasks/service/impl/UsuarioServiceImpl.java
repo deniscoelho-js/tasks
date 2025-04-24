@@ -2,7 +2,6 @@ package core.io.tasks.service.impl;
 
 
 import core.io.tasks.entity.Usuario;
-import core.io.tasks.repository.TaskRepository;
 import core.io.tasks.repository.UsuarioRepository;
 import core.io.tasks.service.UsuarioService;
 import jakarta.persistence.EntityNotFoundException;
@@ -10,7 +9,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +33,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Transactional
-    public Usuario listarUsuarioPorId(Integer id) {
+    public Usuario buscarUsuarioPorId(Integer id) {
         return usuarioRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException(String.format("Usuário id = %s não encontrado.", id))
         );
@@ -50,7 +48,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     @Override
     public void deletarUsuario(Integer id) {
-        Usuario user = listarUsuarioPorId(id);
+        Usuario user = buscarUsuarioPorId(id);
         usuarioRepository.delete(user);
     }
 

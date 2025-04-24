@@ -32,7 +32,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> getById(@PathVariable Integer id) {
-        Usuario user = usuarioService.listarUsuarioPorId(id);
+        Usuario user = usuarioService.buscarUsuarioPorId(id);
         return ResponseEntity.ok().body(UsuarioMapper.toUsuarioResponseDTO(user));
     }
 

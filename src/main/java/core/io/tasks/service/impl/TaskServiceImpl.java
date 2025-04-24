@@ -88,4 +88,13 @@ public class TaskServiceImpl implements TaskService {
                 () -> new EntityNotFoundException(String.format("task id = %s não encontrado", id)));
         return taskMapper.toTaskResponseDTO(task);
     }
+
+
+    public List<TaskResponseDTO> listarTasksPorIdUsuario(Integer id) {
+        List<Task> tasks = taskRepository.findByUsuarioId(id);
+
+        return tasks.stream().map(taskMapper::toTaskResponseDTO).collect(Collectors.toList());
+    }
+
+
 }

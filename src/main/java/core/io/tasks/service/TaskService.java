@@ -12,4 +12,5 @@ public interface TaskService {
     public void deletarTask(Integer id);
     public TaskResponseDTO editarTask(Integer id, Map<String, Object> updates);
     public TaskResponseDTO listarTaskPorId(Integer id);
+    public List<TaskResponseDTO> listarTasksPorIdUsuario(Integer id);
 }
